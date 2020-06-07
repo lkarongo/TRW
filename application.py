@@ -14,8 +14,6 @@ db.init_app(app)
 
 
 
-
-
 @app.route("/")
 def index():
     my_api_key= os.getenv("api_key", None)
