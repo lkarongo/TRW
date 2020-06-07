@@ -1,0 +1,14 @@
+::-webkit-input-placeholder {
+    font-style: italic;
+}
+
+input[type=text], select {
+    width: 40%;
+}
+
+
+#map {
+        height: 400px;
+        width: 70%;
+      }
+

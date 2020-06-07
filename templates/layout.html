@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Boostrap CSS -->
+
+
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+
+
+        <title>
+            {% block title %}{% endblock %}
+        </title>
+    </head>
+    <body>
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>

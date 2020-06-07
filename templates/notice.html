@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Type of Notice
+{% endblock %}
+
+
+{% block body %}
+    <h3>Select from below the type of notice recieved.</h3>
+    <p>This would be the notice given to you by your landlord.</p>
+    <br>
+    <form action="{{ url_for('action1') }}" method="post">
+        <div class="form-group">
+            {% for address in addresses[-1:] %}
+                <input class="form-control" type="hidden" name='address_id' value="{{ address.id }}">
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <button class="form-control" type="submit" name='notice1' value="thirty_sixty_notice" data-value="thirty_sixty_notice">30-60 Day Notice</button>
+        </div>
+    </form>
+    <br>
+    <br>
+    <form action="{{ url_for('action2') }}" method="post">
+        <div class="form-group">
+            {% for address in addresses[-1:] %}
+                <input type="hidden" name="address_id" value="{{ address.id }}">
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <button type="submit" name="notice2" value="three_day_notice" data-value="three_day_notice">3 Day Notice</button>
+        </div>
+    </form>
+    <br>
+    <br>
+    <form action="{{ url_for('action3') }}" method="post">
+        <div class="form-group">
+            {% for address in addresses[-1:] %}
+                <input type="hidden" name="address_id" value="{{ address.id }}">
+            {% endfor %}
+        </div>
+        <div class="from-group">
+            <button type="submit" name="notice3" value="unlawful_detainer" data-value="unlawful_detainer">Unlawful Detainer</button>
+        </div>
+    </form>
+{% endblock %}
+

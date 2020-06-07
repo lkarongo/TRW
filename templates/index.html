@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block style %}
+    body
+    {
+
+    }
+{% endblock %}
+
+{% block title %}
+
+     Tenant Rights
+
+{% endblock %}
+
+{% block body %}
+
+        <script src="https://maps.googleapis.com/maps/api/js?key={{ my_api_key }}&libraries=places"></script>
+
+        <h3>Address</h3>
+        <form class="form-control" action="{{ url_for('notice') }}" method="post">
+            <input  type="text" id="txtplaces" name="address" placeholder="Street Address, City, Zip Code">
+            <input type="submit">
+        </form>
+
+
+        <script>
+            var autocomplete;
+
+            function auto() {
+                autocomplete = new google.maps.places.Autocomplete((document.getElementById('txtplaces')),{
+                    types: ['address']
+            });
+
+                autocomplete.addListener('place_changed');
+
+            }
+
+            google.maps.event.addDomListener(window, 'load', auto);
+
+        </script>
+
+
+{% endblock %}
+
