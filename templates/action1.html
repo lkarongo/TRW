@@ -15,9 +15,10 @@
     <script src="https://maps.googleapis.com/maps/api/js?key={{ my_api_key }}&libraries=places"></script>
 
     <script>
+    //I used the google maps javascript api for referece
+    // https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-hotelsearch
         var map, places;
         var markers = [];
-        var autocomplete = localStorage.getItem('selection')
         var staterestrict = {'state': 'california'};
 
             var states = {
@@ -31,6 +32,7 @@
                 }
             };
 
+        //initiating the map
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
                 zoom: states['california'].zoom,
@@ -41,7 +43,24 @@
                 streetViewControl: false
             });
 
+        //This line here I beleive works in conjuction with the 'addlistener' for th autcomplete
+        //In the google maps api documentatoin the two lines are together
+            places = new google.maps.places.PlacesService(map);
+
+         //This is the function to zoom in after obtaining the details
+
+        function onPlaceChanged() {
+            var place = autocomplete.getPlace();
+            if (place.geometry) {
+                map.panTo(place.geometry.location);
+                map.setZoom(15)
+                search();
+            } else {
+                document.getElementById('txtplaces').placeholder = 'Street Address, City, Zip Code';
+            }
         }
+
+    }
         google.maps.event.addDomListener(window, 'load', initMap);
 
     </script>

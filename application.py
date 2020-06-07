@@ -8,6 +8,7 @@ from models import *
 from flask_googlemaps import GoogleMaps
 
 app = Flask(__name__)
+my_api_key= os.getenv("api_key", None)
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
@@ -16,7 +17,6 @@ db.init_app(app)
 
 @app.route("/")
 def index():
-    my_api_key= os.getenv("api_key", None)
     return render_template("index.html", my_api_key=my_api_key)
 
 @app.route("/notice", methods =["GET", "POST"])
@@ -44,7 +44,7 @@ def action1():
 
     address.add_notice(notice)
     addresses = Address.query.all()
-    return render_template("action1.html", title="30/60 Day Notice", addresses=addresses)
+    return render_template("action1.html", title="30/60 Day Notice", addresses=addresses, my_api_key=my_api_key)
 
 @app.route("/action2", methods =["GET", "POST"])
 def action2():
