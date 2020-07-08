@@ -32,6 +32,7 @@ Flask==1.1.1
 flask-googlemaps==0.4.0
 Flask-Session==0.3.1
 Flask-SQLAlchemy==2.4.1
+gunicorn
 help50==3.0.0
 html5lib==1.0.1
 icdiff==1.9.1
