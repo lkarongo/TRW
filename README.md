@@ -8,6 +8,6 @@ local housing court.
 
 
 #### Live Demo
-[lcrw.herokuapp.com](lcrw.herokuapp.com)
+[lcrw.herokuapp.com](https://lcrw.herokuapp.com/)
 
 
