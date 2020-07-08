@@ -1,3 +1,5 @@
+<!--Actions page with map(s) to find legal aid help as well as court. Consider moving the Javascript to the static folder. -->
+
 {% extends "layout.html" %}
 
 {% block title %}
@@ -6,16 +8,18 @@
 {% endblock %}
 
 {% block body %}
+
+    <!-- HTML tags rendering the map and infowindow with Jinja 2 pulling in newly input address data -->
      <div>
         <h4 style="font-family:Verdana;">{{ title }}</h4>
-         <li>(Place holder for actions for this notice) </li>
+         <li>(Place holder for actions for this notice) </li> <!--Each list will be a suggested action item for a user based on the kind of notice selected -->
     </div>
 
 
     <div>
         {% for address in addresses[-1:] %}
             <input id="address" type="hidden" value="{{ address.address }}">
-            <input type="button" value="Find Local Legal Aid Help" onclick="codeAddress()">
+            <input type="button" value="Click Here to Find Local Legal Aid Help" onclick="codeAddress()">
         {% endfor %}
     </div>
 
@@ -57,7 +61,7 @@
 
 
     <script>
-    //I used the google maps javascript api for referece
+    //I used the following google maps javascript api for referece:
     // https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-hotelsearch
         var geocoder;
         var map, places, infoWindow;
@@ -82,13 +86,12 @@
             places = new google.maps.places.PlacesService(map);
 
 
-        //This line here I beleive works in conjuction with the 'addlistener' for the autcomplete
-        //In the google maps api documentatoin the two lines are together
+
 
         }
 
 
-         //This is the function to zoom in after obtaining the details
+         //Function to geocode the address from index.html and zoom in to location.
 
         function codeAddress() {
             var address = document.getElementById('address').value;
@@ -128,7 +131,7 @@
                             animation: google.maps.Animation.DROP,
                             icon: markerIcon
                         });
-                        // If the user clicks a institution marker, show the details of that hotel
+                        // If the user clicks a institution marker, show the details of that institution
                         // in an info window.
                         markers[i].placeResult = results[i];
                         google.maps.event.addListener(markers[i], 'click', showInfoWindow);
@@ -188,7 +191,7 @@
         }
 
         // Get the place details for a hotel. Show the information in an info window,
-        // anchored on the marker for the hotel that the user selected.
+        // anchored on the marker for the institution that the user selected.
         function showInfoWindow() {
             var marker = this;
             places.getDetails({placeId: marker.placeResult.place_id},
@@ -203,7 +206,7 @@
 
         // Load the place information into the HTML elements use by the info window.
         function buildIWContent(place) {
-            document.getElementById('iw-icon').innerHTML = '<img class="hotelIcon" ' +
+            document.getElementById('iw-icon').innerHTML = '<img class="institutionIcon" ' +
                 'src="' + place.icon + '" />';
             document.getElementById('iw-url').innerHTML = '<b><a href=" ' + place.url +
                 ' ">' + place.name + '</a></b>';

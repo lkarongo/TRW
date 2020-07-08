@@ -6,12 +6,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        {% block styles %}
-        <!-- Boostrap CSS -->
+        {% block styles %} <!-- Jinja 2 -->
+
         <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" type="text/css">
         {% endblock styles %}
 
-
+        <!--HTML-->
         <div class='header' style="font-family:Verdana;">
             <h2>Tenant Rights: Alameda County</h2>
         </div>
@@ -23,7 +23,13 @@
         {% block body %}
         {% endblock %}
     </body>
-    <div style='margin-left:20%; position:absolute; bottom:10%'>
+    <div class='down-page' style='text-align:center; margin-left:15%; margin-right:30%'>
+            <small style="font-family:courier;">
+                The contents provided on this website are not substitutes for professional legal advice. The purpose of this site is to give quick action solutions
+                    based on widely available information on how tenants in Alameda county can support themselves as well as find free local legal support.
+            </small>
+    </div>
+    <div style='margin-left:20%'>
         <small style='color:gray'>
             &copy;2020 Lawrence Karongo: Alameda County Tenant Rights Resource
         </small>
