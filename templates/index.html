@@ -16,25 +16,41 @@
 {% block body %}
 
         <script src="https://maps.googleapis.com/maps/api/js?key={{ my_api_key }}&libraries=places"></script>
+        <div>
+            <h3 class='indent' style="font-family:Verdana">Address</h3>
+            <p class='indent' style="font-family:Verdana;">
+                Input your address below to help identify local legal aid organizations.
+            </p>
+            <form  action="{{ url_for('notice') }}" method="post">
+                <input  type="text" id="txtplaces" name="address" placeholder="Street Address, City">
+                <input type="submit">
+            </form>
+        </div>
 
-        <h3>Address</h3>
-        <form class="form-control" action="{{ url_for('notice') }}" method="post">
-            <input  type="text" id="txtplaces" name="address" placeholder="Street Address, City, Zip Code">
-            <input type="submit">
-        </form>
+        <blockquote class='form-control; down-page'>
+            <small style="font-family:courier,arial,helvetica;">
+                The contents provided on this website are not substitutes for professional legal advice. The purpose of this site is to give quick action solutions
+                based on widely available information on how tenants in Alameda county can support themselves as well as find free local legal support.
+            </small>
+        </blockquote>
+
+
 
         <script>
-            var autocomplete;
+            const searchInput =
+            document.getElementById('txtplaces');
 
-            function auto() {
-                autocomplete = new google.maps.places.Autocomplete((document.getElementById('txtplaces')),{
-                    types: ['address']
+            const autocomplete = new google.maps.places.Autocomplete(searchInput);
+
+            searchInput.addEventListener("change", () => {
+                setTimeout(function () {
+                    let addr = searchInput.JSON;
+                    localStorage.setItem('value', addr);
+
+                });
             });
 
-                autocomplete.addListener('place_changed', );
-            }
-
-            google.maps.event.addDomListener(window, 'load', auto);
+            google.maps.event.addDomListener(window, 'load', setTimeout);
 
         </script>
 

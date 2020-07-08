@@ -28,7 +28,8 @@ def notice():
     db.session.add(location)
     db.session.commit()
     addresses = Address.query.all()
-    return render_template("notice.html", addresses=addresses)
+    autocomplete = request.form.get('autocomplete')
+    return render_template("notice.html", addresses=addresses, autocomplete=autocomplete)
 
 @app.route("/action1", methods =["GET", "POST"])
 def action1():
@@ -44,6 +45,8 @@ def action1():
 
     address.add_notice(notice)
     addresses = Address.query.all()
+
+
     return render_template("action1.html", title="30/60 Day Notice", addresses=addresses, my_api_key=my_api_key)
 
 @app.route("/action2", methods =["GET", "POST"])
@@ -59,7 +62,8 @@ def action2():
         return render_template("failure.html", message="Something went wrong with getting the address.")
 
     address.add_notice(notice)
-    return render_template('action2.html', title="3 day notice")
+    addresses = Address.query.all()
+    return render_template('action2.html', title="3 day notice", addresses=addresses, my_api_key=my_api_key)
 
 @app.route("/action3", methods =["GET", "POST"])
 def action3():
@@ -76,4 +80,5 @@ def action3():
 
 
     address.add_notice(notice)
-    return render_template('action3.html', title="unlawful detainer notice")
+    addresses = Address.query.all()
+    return render_template('action3.html', title="unlawful detainer notice", addresses=addresses, my_api_key=my_api_key)

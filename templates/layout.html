@@ -3,10 +3,18 @@
     <head>
         <!-- Boostrap CSS -->
 
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+        {% block styles %}
+        <!-- Boostrap CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" type="text/css">
+        {% endblock styles %}
 
 
+        <div class='header' style="font-family:Verdana;">
+            <h2>Tenant Rights: Alameda County</h2>
+        </div>
         <title>
             {% block title %}{% endblock %}
         </title>
@@ -15,4 +23,9 @@
         {% block body %}
         {% endblock %}
     </body>
+    <div style='margin-left:20%; position:absolute; bottom:10%'>
+        <small style='color:gray'>
+            &copy;2020 Lawrence Karongo: Alameda County Tenant Rights Resource
+        </small>
+    </div>
 </html>
